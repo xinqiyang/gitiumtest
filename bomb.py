@@ -95,7 +95,8 @@ def doPost():
         'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) gitium/2.1.3 Chrome/59.0.3071.115 Electron/1.8.2 Safari/537.36",
         'Content-Type': "application/json;charset=UTF-8",
         'Accept': "application/json, text/plain, */*' -H 'X-IOTA-API-Version: 1",
-        'Proxy-Connection': "keep-alive"
+        'Proxy-Connection': "keep-alive",
+        'X-DevTools-Request-Id': '21152.396'
     }
 
     response = requests.post(url, data=json.dumps(body), headers=headers)
@@ -117,7 +118,5 @@ if __name__ == '__main__':
         for i in range(0, postCount):
             t = threading.Thread(target=runLogic, args=(i,))
             t.start()
-            # if i == 'www_upbit_com' or i == 'blog_coinbase_com' or i == 'coinone_co_kr' or i == 'medium_com_gemini':
-            #     time.sleep(10)
             break
         time.sleep(13)
