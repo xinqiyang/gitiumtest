@@ -82,12 +82,12 @@ def runLogic(arg):
 
 if __name__ == '__main__':
     count = 0
-    postCount = 10
+    postCount = 2
     while True:
         for i in range(0, postCount):
             t = threading.Thread(target=runLogic, args=(i,))
             t.start()
             count = count + 1
-            if count % 100 == 0:
-                log.info("do insert: {}".format(count))
-            time.sleep(2)
+        if count % 100 == 0:
+            log.info("do insert: {}".format(count))
+        time.sleep(2)
